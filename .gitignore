@@ -10,6 +10,20 @@
 *.webp
 *.ico
 
+# Ignore all video files
+*.mp4
+*.avi
+*.mov
+*.wmv
+*.mkv
+*.flv
+*.webm
+*.mpeg
+*.mpg
+*.3gp
+*.m4v
+*.qt
+
 .glitchdotcom.json
 .node-gyp
 node_modules
@@ -22,3 +36,6 @@ node_modules
 .env.local
 
 database.db
+
+# Ignore the assets folder
+assets/
