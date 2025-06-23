@@ -39,3 +39,6 @@ database.db
 
 # Ignore the assets folder
 assets/
+
+# Ignore extra files
+extras/
