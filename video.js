@@ -12,9 +12,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Video sources
     const videoSources = [
+        
         "assets/vids/bong-budots.mp4",
+        "assets/vids/twitter-tax-quartered-2x.mov",
         "assets/vids/du30-americans.mov",
-        "assets/vids/hidden-cell3.mov" 
+        "assets/vids/noban-nowall-2017feb2x.mov",
+        "assets/vids/hidden-cell3.mov",
+        "assets/vids/little-masantol-2x.mp4",
+        "assets/vids/sagay-massacre-2x-captioned.mov",
+        "assets/vids/du30-with-lady.mov",
+        "assets/vids/hidden-cell-8days.mov"
+        
     ];
 
     let currentVideoIndex = 0;

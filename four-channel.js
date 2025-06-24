@@ -53,7 +53,7 @@ s2.initImage(
 src(s2).modulateScale(osc(4, -0.3, 0)).out(o2);
 
 // video
-s3.initVideo("assets/vids/twitter-tax-break.mov","assets/vids/du30.mov");
+s3.initVideo("assets/vids/boiler-room-sample.mp4","assets/vids/du30.mov");
 src(s3).modulate(osc(6, -0.3, 0)).out(o3);
 
 render();
