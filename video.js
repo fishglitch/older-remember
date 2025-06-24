@@ -21,7 +21,9 @@ document.addEventListener("DOMContentLoaded", function () {
         "assets/vids/little-masantol-2x.mp4",
         "assets/vids/sagay-massacre-2x-captioned.mov",
         "assets/vids/du30-with-lady.mov",
-        "assets/vids/hidden-cell-8days.mov"
+        "assets/vids/hidden-cell-8days.mov",
+        "assets/vids/1000cuts-2x.mov",
+        "assets/vids/student-walkout-trump-4x.mp4"
         
     ];
 

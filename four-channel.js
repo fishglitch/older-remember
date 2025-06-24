@@ -13,7 +13,7 @@ hydra = new Hydra({
 let elt;
 const s = (p1) => {
   p1.frameRate = 10;
-  textArray = ["🪽", "🌉", "💸", "🇵🇭", "🙂‍↔️", "🏀", "🩸", "🤕"];
+  textArray = ["🪽","🤔", "🌉", "💸", "🇵🇭", "🙂‍↔️", "🏀", "🩸", "🤕"];
 
   p1.setup = () => {
     let canvas = p1.createCanvas(hydraCanvas.width, hydraCanvas.height);
@@ -46,11 +46,13 @@ src(o0).scrollY(-0.003).scrollX(0.002).blend(o0, 0.5).layer(src(s0)).out(o0);
 s1.initImage("assets/pnp-ai.jpg");
 src(s1).modulateRotate(osc(4, -0.3, 0)).out(o1);
 
+
 // water texture
+// https://upload.wikimedia.org/wikipedia/commons/2/26/Sea_wave_abstract_texture_%28Unsplash%29.jpg
 s2.initImage(
-  "https://upload.wikimedia.org/wikipedia/commons/2/26/Sea_wave_abstract_texture_%28Unsplash%29.jpg"
+  "assets/cameras-phones/000009150019.jpg"
 );
-src(s2).modulateScale(osc(4, -0.3, 0)).out(o2);
+src(s2).out(o2);
 
 // video
 s3.initVideo("assets/vids/boiler-room-sample.mp4","assets/vids/du30.mov");
