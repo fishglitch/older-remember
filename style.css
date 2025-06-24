@@ -125,35 +125,19 @@ top left corner */
   position: absolute;  /* or relative depending on your use case */
   right: 0;
   width: 50%;
-  height: 200px;
+  height: 800px;
   /* background-color: black; */
   background-color: rgba(0, 0, 0, 0); /* Transparent background */
   overflow: hidden;
   z-index: 12;
 }
-
 .scrolling-text {
-  position: absolute;
-  white-space: nowrap;
-  left: 0;
-  font-family: 'Orbitron', sans-serif; /* Set the font family */
-}
+    position: absolute;
+    white-space: nowrap;
+    left: 0;
+    font-family: 'Orbitron', sans-serif; /* Set the font family */
+  }
 
-
-/* Font Sizes */
-.text-size-18 {
-  font-size: 18px;
-}
-
-.text-size-32 {
-  font-size: 32px;
-}
-
-/* Text Colors */
-.text-color-white {
-  color: white;
-}
-
-.text-color-yellow {
-  color: yellow;
-}
+  .thick-text {
+      font-weight: bold; /* Or: '700', '800', '900' (stronger) */
+  }

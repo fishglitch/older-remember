@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "assets/vids/budots-explained-by-white-man.mp4",
     "assets/vids/twitter-tax-fifthed-2x.mov",
     "assets/vids/du30-candidates.mov",
-    "assets/vids/iris-canada.mov",
+    "assets/vids/iris-canada-captions.mp4",
     "assets/vids/hidden-cell3.mov",
     "assets/vids/drumpf-budots.mov",
     "assets/vids/little-masantol-2x.mp4",
