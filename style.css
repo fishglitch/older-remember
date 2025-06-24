@@ -82,14 +82,17 @@ top left corner */
   border: 2px solid rgb(0, 255, 89); /* For visibility */
 }
 
-/* Center video element */
 #videoElement {
-  display: flex; /* Use flexbox to arrange children */
-  width: 40%; /* Fixed width for the video */
-  height: auto; /* Maintain aspect ratio */
-  margin: 10%; /* Add margin for spacing */
-  z-index: 15; /* Set above the image canvases */
-  border: 2px solid red; /* For visibility */
+    position: absolute; /* VERY IMPORTANT */
+    width: 40%; /* Adjust as needed - This sets the *maximum* width */
+    max-width: 600px; /* Prevent it from being too big */
+    height: auto; /* Maintain aspect ratio */
+    z-index: 15;
+    border: 2px solid red; /* For visibility */
+    display: block; /* Override any flexbox defaults */
+    /* If still issues with positioning, remove these two */
+    /* margin: 10%;  */
+    /* display: flex; */
 }
 
 #imgPpl {
