@@ -1,0 +1,23 @@
+{
+  "name": "older-remember",
+  "version": "1.0.0",
+  "main": "four-channel.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fishglitch/older-remember.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fishglitch/older-remember/issues"
+  },
+  "homepage": "https://github.com/fishglitch/older-remember#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
