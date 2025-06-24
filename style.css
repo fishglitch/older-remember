@@ -20,27 +20,31 @@
     top: 50%;           /* Center vertically */
     left: 50%;          /* Center horizontally */
     transform: translate(-50%, -50%); /* Use transform to center the wrapper */
-    display: flex;      /* Use flexbox to arrange children side by side */
+    display: flex;      /* Use flexbox to arrange children */
+    justify-content: center; /* Center children horizontally in flexbox */
+    align-items: center; /* Center children vertically in flexbox */
     z-index: 2;        /* Set above the fourChannelCanvas */
+    flex-wrap: wrap; /* Allow wrapping depending on screen size */
 }
 
+/* Center video element */
 #videoElement {
-    width: 100%;        /* Half width */
-    height: auto;      /* Maintain aspect ratio */
-    max-width: 50%;  /* Optional: maximum width for the video */
-    max-height: 50%; /* Optional: maximum height for the video */
-    display: block;     /* Ensure it behaves as a block element */
-    margin: 0;         /* Reset margin */
+    width: 400px;        /* Fixed width for the video */
+    height: auto;        /* Maintain aspect ratio */
+    margin: 20px;        /* Add margin for spacing */
+    display: block;      /* Ensure it behaves as a block element */
 }
 
-#imgCameraPhones {
-    width: 50%;        /* Half width */
-    height: auto;      /* Adjust height */
-    display: block;    /* Ensure it behaves as a block element */
+/* Set dimensions for the image canvases */
+#imgCameraPhones, #imgFences, #imgHands {
+    width: 300px;        /* Fixed width */
+    height: 300px;       /* Fixed height */
+    margin: 20px;        /* Add margin for spacing */
+    display: block;      /* Ensure it behaves as a block element */
+    transform: rotate(calc(30deg * (var(--i) - 1))); /* Rotate canvases for scattering effect */
 }
 
-#imgFences {
-    width: 50%;        /* Half width */
-    height: auto;      /* Adjust height */
-    display: block;    /* Ensure it behaves as a block element */
-}
+/* Custom CSS variable for each canvas rotation */
+#imgCameraPhones { --i: 1; }
+#imgFences { --i: 2; }
+#imgHands { --i: 3; }
