@@ -1,5 +1,5 @@
 let hydra, hydraCanvas;
-hydraCanvas = document.getElementById("myCanvas");
+hydraCanvas = document.getElementById("fourChannelCanvas");
 hydraCanvas.width = window.innerWidth;
 hydraCanvas.height = window.innerHeight;
 
@@ -55,7 +55,7 @@ s2.initImage(
 src(s2).out(o2);
 
 // video
-s3.initVideo("assets/vids/boiler-room-sample.mp4","assets/vids/du30.mov");
+s3.initVideo("assets/vids/boiler-room-sample.mp4");
 src(s3).modulate(osc(6, -0.3, 0)).out(o3);
 
 render();

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>the older i get, the more i remember</title>
+    <title>2017\2025</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,8 +11,6 @@
 
     <script src="https://unpkg.com/hydra-synth"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.js"></script>
-
-
 </head>
 
 <body>
@@ -20,12 +18,16 @@
 
     <!-- Canvas container to hold both canvases -->
     <div id="canvasContainer">
-        <!-- Video element -->
-        <video id="videoElement" autoplay controls></video>
-        <canvas id="myCanvas"></canvas>
-        <canvas id="canvas" width="800" height="800"></canvas>
-
+        <canvas id="fourChannelCanvas"></canvas>
+        
+        <!-- Wrapper for the video and imagesArrayCanvas -->
+        <div id="overlayContainer">
+            <!-- Video element -->
+            <video id="videoElement" autoplay controls></video>
+            <canvas id="imagesArrayCanvas" width="800" height="800"></canvas>
+        </div>
     </div>
+    
     <script src="video.js" defer></script>
     <script src="four-channel.js" defer></script>
     <script src="images-array.js" defer></script>

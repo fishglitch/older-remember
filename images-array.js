@@ -36,7 +36,7 @@ function preload() {
 
 // Sets up the canvas and draws the first image
 function setup() {
-    const canvas = document.getElementById('canvas');
+    const canvas = document.getElementById('imagesArrayCanvas');
     const ctx = canvas.getContext('2d');
 
     // Draw the first image
@@ -56,7 +56,7 @@ function nextImage() {
     if (currentIndex >= images.length) {
         currentIndex = 0;
     }
-    const canvas = document.getElementById('canvas');
+    const canvas = document.getElementById('imagesArrayCanvas');
     const ctx = canvas.getContext('2d');
     draw(ctx);
 }

@@ -1,39 +1,40 @@
 /* Style for the canvas container */
 #canvasContainer {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  margin: 0 auto;
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full height for the container */
+    margin: 0 auto; /* Center the container */
 }
 
-#myCanvas {
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-/* Style for both canvases */
-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-/* Specific styles for centered canvas */
-#canvas {
-  width: 50%;
-  height: auto;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+/* Style for the fourChannelCanvas */
+#fourChannelCanvas {
+    position: absolute; /* Position it as a background canvas */
+    width: 100%;       /* Full width */
+    height: 100%;      /* Full height */
+            /* Lower z-index than overlay elements */
 }
 
-/* Style for the video element */
+/* Wrapper for the video and images array canvas */
+#overlayContainer {
+    position: absolute; /* Absolutely position this over the fourChannelCanvas */
+    top: 50%;           /* Center vertically */
+    left: 50%;          /* Center horizontally */
+    transform: translate(-50%, -50%); /* Use transform to center the wrapper */
+    display: flex;      /* Use flexbox to arrange children side by side */
+    z-index: 2;        /* Set above the fourChannelCanvas */
+}
+
 #videoElement {
-    width: 100%;        /* Make the video responsive to its container */
-    height: auto;       /* Maintain aspect ratio */
-    max-width: 640px;   /* Optional: set a maximum width */
-    max-height: 360px;  /* Optional: set a maximum height */
-    display: block;      /* Ensures it behaves as a block element */
-    margin: 0 auto;     /* Center the video horizontally */
+    width: 50%;        /* Half width */
+    height: auto;      /* Maintain aspect ratio */
+    max-width: 320px;  /* Optional: maximum width for the video */
+    max-height: 180px; /* Optional: maximum height for the video */
+    display: block;     /* Ensure it behaves as a block element */
+    margin: 0;         /* Reset margin */
+}
+
+#imagesArrayCanvas {
+    width: 50%;        /* Half width */
+    height: auto;      /* Adjust height */
+    display: block;    /* Ensure it behaves as a block element */
 }
