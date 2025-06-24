@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap'); /* Import the font - KEEP THIS AT THE TOP! */
 
+
 body {
     font-family: 'Orbitron', sans-serif; /* Apply the font to the body */
     
   }
+
+  
 
   
 /* Style for the canvas container */
@@ -88,7 +91,7 @@ top left corner */
     max-width: 600px; /* Prevent it from being too big */
     height: auto; /* Maintain aspect ratio */
     z-index: 15;
-    border: 2px solid red; /* For visibility */
+    border: 4px solid red; /* For visibility */
     display: block; /* Override any flexbox defaults */
     /* If still issues with positioning, remove these two */
     /* margin: 10%;  */
@@ -99,7 +102,7 @@ top left corner */
   width: 100%; /* Change to full width */
   max-width: 400px; /* Set max width to 400px */
   height: auto; /* Automatically adjust height */
-  border: 2px dashed rgb(255, 53, 154); /* For visibility */
+  border: 2px dashed rgb(0, 255, 89); /* For visibility */
   z-index: 16; /* Make sure image canvases are on top */
   display: block; /* Ensure it takes up block space */
   margin: 0 auto; /* Center alignment if it's not already */
@@ -128,7 +131,7 @@ top left corner */
   position: absolute;  /* or relative depending on your use case */
   right: 0;
   width: 50%;
-  height: 800px;
+  height: 1000px;
   /* background-color: black; */
   background-color: rgba(0, 0, 0, 0); /* Transparent background */
   overflow: hidden;

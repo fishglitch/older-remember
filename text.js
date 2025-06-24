@@ -9,12 +9,16 @@ function createTranslucentScrollingText(containerId, text, options = {}) {
   }
   console.log("Container found:");
 
-  // Set default options
-  const fontSize = options.fontSize || 24;
-  const fontFamily = options.fontFamily || "sans-serif";
-  const color = options.color || "white";
-  const opacity = options.opacity === undefined ? 0.7 : options.opacity;
-  const speed = options.speed || 20;
+  const {
+    fontSize = 28,
+    color = "yellow",
+    opacity = 1,
+    speed = 80,
+    fontFamily = "Orbitron",
+    letterSpacing = "2px", // New option for letter spacing
+    fontWeight = "bold", // New option for bold
+    fontStyle = "italic", // New option for italic
+  } = options;
 
   console.log("Options used:");
 
@@ -60,12 +64,12 @@ function createTranslucentScrollingText(containerId, text, options = {}) {
 document.addEventListener("DOMContentLoaded", function () {
   createTranslucentScrollingText(
     "textContainer",
-    "losing detail and its frames washing away.",
+    "losing detail--its frames washing away",
     {
-      fontSize: 32,
+      fontSize: 43,
       color: "white",
       opacity: 0.9,
-      speed: 20,
+      speed: 15,
       fontFamily: "Orbitron", //<------ Set Font Family
     }
   );
@@ -90,16 +94,16 @@ document.addEventListener("DOMContentLoaded", function () {
         fontSize: 32,
         color: "#ff8b73",
         opacity: 0.9,
-        speed: 32,
+        speed: 52,
         fontFamily: "Orbitron", //<------ Set Font Family
       }
     );
   
     createTranslucentScrollingText(
       "textContainer",
-      "and you try to mark thespot with your tongue.",
+      "you try to mark thespot with your tongue",
       {
-        fontSize: 32,
+        fontSize: 38,
         color: "#ff8b73",
         opacity: 0.9,
         speed: 27,
@@ -123,24 +127,25 @@ document.addEventListener("DOMContentLoaded", function () {
         "textContainer",
         "like melted snow--sad it's gone but will come back someday",
         {
-          fontSize: 32,
-          color: "#ff8b73",
+          fontSize: 30,
+          color: "#34ebd8",
           opacity: 0.9,
-          speed: 27,
+          speed: 20,
           fontFamily: "Orbitron", //<------ Set Font Family
         }
       );
 
   createTranslucentScrollingText(
     "textContainer",
-    "the older I get, the more I remember 2017\\2025",
+    "the older i get, the more i remember 2017\\2025",
     {
-      fontSize: 18,
-      color: "yellow",
-      opacity: 0.9,
-      speed: 80,
-      fontFamily: "Orbitron", //<------ Set Font Family
- 
+        fontSize: 18,
+        color: "yellow",
+        opacity: 1,
+        speed: 80,
+        fontFamily:  "Orbitron",
+        // fontWeight: "bold", // Make the text bold
+   
     }
   );
 });

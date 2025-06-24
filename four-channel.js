@@ -57,7 +57,7 @@ src(s2)
 .out(o2);
 
 // video
-s3.initVideo("assets/vids/boiler-room-sample.mp4");
+s3.initVideo("assets/vids/unused/boiler-room-sample.mp4");
 src(s3)
 
 // .repeat(2,2)
