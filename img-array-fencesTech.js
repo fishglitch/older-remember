@@ -9,6 +9,22 @@ document.addEventListener("DOMContentLoaded", () => {
     "assets/fences/alejo000820-R1-054-25A.jpg",
     "assets/fences/FH010010.jpeg",
     "assets/fences/FH020011.jpeg",
+    "assets/salesforceTech/000007430013.jpg",
+    "assets/salesforceTech/000007430023.jpg",
+    "assets/salesforceTech/000009140022.jpg",
+    "assets/salesforceTech/000009150026.jpg",
+    "assets/salesforceTech/000009160003.jpg",
+    "assets/salesforceTech/000009160017.jpg",
+    "assets/salesforceTech/000009170013.jpg",
+    "assets/salesforceTech/000019690029.jpg",
+    "assets/salesforceTech/000019740035.jpg",
+    "assets/salesforceTech/000019750006.jpg",
+    "assets/salesforceTech/000019750011.jpg",
+    "assets/salesforceTech/AP2.jpg",
+    "assets/salesforceTech/AP6.jpg"
+
+
+
   ];
 
   const fences = [];

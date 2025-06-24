@@ -8,6 +8,22 @@ document.addEventListener("DOMContentLoaded", () => {
     "assets/hands/glowsticks.png",
     "assets/hands/IMG_0929.JPG",
     "assets/hands/VE_Arnold_Skippy.jpg",
+    "assets/objects/000007420032.jpg",
+    "assets/objects/000007440005.jpg",
+    "assets/objects/000009130022.jpg",
+    "assets/objects/000014220001.jpg",
+    "assets/objects/000014270003.jpg",
+    "assets/objects/000014500026.jpg",
+    "assets/objects/000014510019.jpg",
+    "assets/objects/000014520018.jpg",
+    "assets/objects/000015250003.jpg",
+    "assets/objects/000015250013.jpg",
+    "assets/objects/000015250019.jpg",
+    "assets/objects/000019690017.jpg",
+    "assets/objects/000019730011.jpg",
+    "assets/objects/AP3.jpg",
+    "assets/objects/FH030026.jpg",
+    "assets/objects/SoMapagmahal_BayanihanMural.jpg",
   ];
 
   const hands = [];
@@ -82,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
       setup();
 
       // Optionally add an interval to automatically change images
-      setInterval(nextImage, 500); // Change image every 500 milliseconds
+      setInterval(nextImage, 200); // Change image every 500 milliseconds
     })
     .catch((err) => {
       console.error("Error preloading images:", err);
