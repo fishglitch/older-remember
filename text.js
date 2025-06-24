@@ -137,15 +137,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
   createTranslucentScrollingText(
     "textContainer",
-    "the older i get, the more i remember 2017\\2025",
+    "the older i get, the more",
     {
-        fontSize: 18,
+        fontSize: 68,
         color: "yellow",
         opacity: 1,
-        speed: 80,
+        speed: 90,
         fontFamily:  "Orbitron",
         // fontWeight: "bold", // Make the text bold
    
     }
   );
+
+  createTranslucentScrollingText(
+    "textContainer",
+    "i remember 2017\\2025",
+    {
+        fontSize: 58,
+        color: "yellow",
+        opacity: 1,
+        speed: 75,
+        fontFamily:  "Orbitron",
+        // fontWeight: "bold", // Make the text bold
+   
+    }
+  );
+  
 });
