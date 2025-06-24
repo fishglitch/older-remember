@@ -1,15 +1,16 @@
 const imageUrls = [
     "assets/cameras-phones/000007410001.jpg",
-    "https://cdn.glitch.global/166b024b-df86-438f-b85c-5d7e7edea0a6/philippine%20national%20police%20waltzing%20at%20the%20EDSA%20rally%20with%20the%20photo%20of%20Ferdinand%20Marcos%20in%20the%20background%20in%20an%20ornate%20frame.png?v=1749924855601", 
-    "https://cdn.glitch.global/6c8c742f-3d98-4efa-9e2a-6b24719fd9d8/000011550004.jpg?v=1745700304533",
-    "https://cdn.glitch.global/6c8c742f-3d98-4efa-9e2a-6b24719fd9d8/MCC5.jpg?v=1745702249169",
-    "https://cdn.glitch.global/6c8c742f-3d98-4efa-9e2a-6b24719fd9d8/000011550006.jpg?v=1745701919627",
-    "https://cdn.glitch.global/6c8c742f-3d98-4efa-9e2a-6b24719fd9d8/000015250013.jpg?v=1745702124439",
-    "https://cdn.glitch.global/6c8c742f-3d98-4efa-9e2a-6b24719fd9d8/000015250019.jpg?v=1745702045282",
-    "https://cdn.glitch.global/6c8c742f-3d98-4efa-9e2a-6b24719fd9d8/000016140002.jpg?v=1745701995237",
-    "https://cdn.glitch.global/6c8c742f-3d98-4efa-9e2a-6b24719fd9d8/000016140004.jpg?v=1745701965684",
-    "https://cdn.glitch.global/6c8c742f-3d98-4efa-9e2a-6b24719fd9d8/000015250001.jpg?v=1745702182156",
-    "https://cdn.glitch.global/6c8c742f-3d98-4efa-9e2a-6b24719fd9d8/000015250003.jpg?v=1745702150370"
+    "assets/cameras-phones/000009130001.jpg",
+    "assets/cameras-phones/000009130023.jpg",
+    "assets/cameras-phones/000009150019.jpg",
+    "assets/cameras-phones/000014230004.jpg",
+    "assets/cameras-phones/000019690015.jpg",
+    "assets/cameras-phones/000019690020.jpg",
+    "assets/cameras-phones/000019710005.jpg",
+    "assets/cameras-phones/000019720022.jpg",
+    "assets/cameras-phones/IMG_0910.JPG",
+    "assets/cameras-phones/IMG_6393.JPG",
+    
 ];
 
 const images = [];
@@ -29,15 +30,23 @@ function preload() {
         return new Promise((resolve) => {
             const img = new Image();
             img.src = url;
-            img.onload = () => resolve(img);
+            img.onload = () => {
+                console.log(`camera and phone images loaded`); // Log when each image is loaded
+                resolve(img);
+            };
+            img.onerror = () => {
+                console.error(`Failed to load image: ${url}`); // Log if an image fails to load
+            };
         });
     }));
 }
 
+
 // Sets up the canvas and draws the first image
 function setup() {
-    const canvas = document.getElementById('imagesArrayCanvas');
+    const canvas = document.getElementById('imgCameraPhones');
     const ctx = canvas.getContext('2d');
+    console.log("Setup complete. Drawing first image..."); // Log setup completion
 
     // Draw the first image
     draw(ctx);
@@ -48,6 +57,7 @@ function draw(ctx) {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     const img = images[currentIndex];
     ctx.drawImage(img, (ctx.canvas.width - img.width / 2) / 2, (ctx.canvas.height - img.height / 2) / 2, img.width / 2, img.height / 2);
+    console.log(`Drawing image ${currentIndex + 1} out of ${images.length}`); // Log which image is being drawn
 }
 
 // Moves to the next image
@@ -56,7 +66,7 @@ function nextImage() {
     if (currentIndex >= images.length) {
         currentIndex = 0;
     }
-    const canvas = document.getElementById('imagesArrayCanvas');
+    const canvas = document.getElementById('imgCameraPhones');
     const ctx = canvas.getContext('2d');
     draw(ctx);
 }
@@ -65,8 +75,11 @@ function nextImage() {
 preload().then(loadedImages => {
     images.push(...loadedImages);
     shuffle(images); // Shuffle images here
+    console.log("All images preloaded and shuffled."); // Log after all images are loaded and shuffled
     setup();
 
     // Optionally add an interval to automatically change images
     setInterval(nextImage, 500); // change image every n milliseconds
+}).catch(err => {
+    console.error("Error preloading images:", err);
 });

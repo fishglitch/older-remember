@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Video sources
   const videoSources = [
+    "assets/vids/student-walkout-trump-4x.mp4",
     "assets/vids/bong-budots.mp4",
     "assets/vids/budots-explained-by-white-man.mp4",
     "assets/vids/twitter-tax-fifthed-2x.mov",
@@ -24,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
     "assets/vids/sagay-massacre-2x-captioned.mov",
     "assets/vids/du30-with-lady.mov",
     "assets/vids/hidden-cell-8days.mov",
-    "assets/vids/student-walkout-trump-4x.mp4",
     "assets/vids/1000cuts-2x.mov",
     "assets/vids/aninoko-ice-clip.mov",
   ];

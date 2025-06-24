@@ -25,15 +25,21 @@
 }
 
 #videoElement {
-    width: 50%;        /* Half width */
+    width: 100%;        /* Half width */
     height: auto;      /* Maintain aspect ratio */
-    max-width: 320px;  /* Optional: maximum width for the video */
-    max-height: 180px; /* Optional: maximum height for the video */
+    max-width: 50%;  /* Optional: maximum width for the video */
+    max-height: 50%; /* Optional: maximum height for the video */
     display: block;     /* Ensure it behaves as a block element */
     margin: 0;         /* Reset margin */
 }
 
-#imagesArrayCanvas {
+#imgCameraPhones {
+    width: 50%;        /* Half width */
+    height: auto;      /* Adjust height */
+    display: block;    /* Ensure it behaves as a block element */
+}
+
+#imgFences {
     width: 50%;        /* Half width */
     height: auto;      /* Adjust height */
     display: block;    /* Ensure it behaves as a block element */
