@@ -25,34 +25,137 @@ document.addEventListener("DOMContentLoaded", function () {
     "assets/vids/sagay-massacre-2x-captioned.mov",
     "assets/vids/du30-with-lady.mov",
     "assets/vids/hidden-cell-8days.mov",
+    "assets/vids/Salesforce-time-lapse..mp4",
     "assets/vids/1000cuts-2x.mov",
-    "assets/vids/aninoko-ice-clip.mov",
+    "assets/vids/aninoko-ice-clip-audio-replaced.mp4",
+    "assets/vids/dj-love-boiler-edited.mp4"
   ];
 
   let currentVideoIndex = 0;
+  let videoPosition = { x: 0, y: 0 }; // Initial position
+  let moveSpeed = .5; // Pixels to move per frame
+  let moveDirection = { x: 0, y: 0 }; // Direction of movement
 
-  // Function to play the next video in the array
   function playNextVideo() {
-    // Set the video source to the current index
+    // Set the video source for the current index
     videoElement.src = videoSources[currentVideoIndex];
-
+    
     // Play the video
     videoElement.play().catch((error) => {
-      console.error("Error trying to play the video:", error);
+        console.error("Error trying to play the video:", error);
     });
 
     // Increment the index for the next video
     currentVideoIndex++;
-
-    // Reset the index if it exceeds the length of the array
     if (currentVideoIndex >= videoSources.length) {
-      currentVideoIndex = 0; // Loop back to the first video
+        currentVideoIndex = 0; 
     }
+
+    // Set random starting position for the video
+    const overlayContainer = document.getElementById("overlayContainer");
+    const containerWidth = overlayContainer.clientWidth;
+    const containerHeight = overlayContainer.clientHeight;
+
+    // Get video dimensions
+    const videoWidth = videoElement.offsetWidth || videoElement.videoWidth;
+    const videoHeight = videoElement.offsetHeight || videoElement.videoHeight;
+
+    // Calculate new random positions within bounds 
+    // Ensure the position is such that the video doesn't overflow the container
+    videoPosition.x = Math.random() * (containerWidth - videoWidth); // Random x position
+    videoPosition.y = Math.random() * (containerHeight - videoHeight); // Random y position
+
+    // Position the video element
+    videoElement.style.position = 'absolute';
+    videoElement.style.left = `${videoPosition.x}px`;
+    videoElement.style.top = `${videoPosition.y}px`;
+
+    // Determine initial movement direction
+    calculateDirection(); // Determine initial direction
+    slideVideo(); // Start the sliding movement
+}
+  function teleportVideo() {
+      const overlayContainer = document.getElementById("overlayContainer");
+      const containerWidth = overlayContainer.clientWidth;
+      const containerHeight = overlayContainer.clientHeight;
+
+      // Get video dimensions
+      const videoWidth = videoElement.offsetWidth || videoElement.videoWidth;
+      const videoHeight = videoElement.offsetHeight || videoElement.videoHeight;
+
+      // Calculate new random positions within bounds
+      const randomX = Math.random() * (containerWidth - videoWidth);
+      const randomY = Math.random() * (containerHeight - videoHeight);
+
+      videoElement.style.position = 'absolute';
+      videoElement.style.left = `${randomX}px`;
+      videoElement.style.top = `${randomY}px`;
   }
 
-  // Event listener to play the next video when the current one ends
-  videoElement.addEventListener("ended", playNextVideo);
+  function calculateDirection() {
+      const overlayContainer = document.getElementById("overlayContainer");
+      const containerWidth = overlayContainer.clientWidth;
+      const containerHeight = overlayContainer.clientHeight;
 
-  // Start with the first video
-  playNextVideo();
+      // Dimensions of video
+      const videoWidth = videoElement.offsetWidth || videoElement.videoWidth;
+      const videoHeight = videoElement.offsetHeight || videoElement.videoHeight;
+
+      // Space calculation
+      const spaceLeft = videoPosition.x; // space on the left
+      const spaceRight = containerWidth - (videoPosition.x + videoWidth); // space on the right
+      const spaceAbove = videoPosition.y; // space above
+      const spaceBelow = containerHeight - (videoPosition.y + videoHeight); // space below
+
+      // Decide movement direction based on available space
+      if (spaceLeft > spaceRight) {
+          moveDirection.x = -moveSpeed; // Move left
+      } else {
+          moveDirection.x = moveSpeed; // Move right
+      }
+
+      if (spaceAbove > spaceBelow) {
+          moveDirection.y = -moveSpeed; // Move up
+      } else {
+          moveDirection.y = moveSpeed; // Move down
+      }
+  }
+
+  function slideVideo() {
+      const overlayContainer = document.getElementById("overlayContainer");
+      const containerWidth = overlayContainer.clientWidth;
+      const containerHeight = overlayContainer.clientHeight;
+
+        // Move the video by a fraction of the move speed for smoother movement
+        videoPosition.x += moveDirection.x * (moveSpeed / 2);  // Change the division to make it smoother
+        videoPosition.y += moveDirection.y * (moveSpeed / 2);  // Same here
+
+      // Update video position
+      videoPosition.x += moveDirection.x;
+      videoPosition.y += moveDirection.y;
+
+      // Apply new position
+      videoElement.style.position = 'absolute';
+      videoElement.style.left = `${videoPosition.x}px`;
+      videoElement.style.top = `${videoPosition.y}px`;
+
+      // Check for canvas boundaries
+      if (videoPosition.x < 0 || videoPosition.x > containerWidth - (videoElement.offsetWidth || videoElement.videoWidth)) {
+          moveDirection.x *= -1; // Reverse horizontal direction
+      }
+
+      if (videoPosition.y < 0 || videoPosition.y > containerHeight - (videoElement.offsetHeight || videoElement.videoHeight)) {
+          moveDirection.y *= -1; // Reverse vertical direction
+      }
+
+      // Keep sliding while video is playing
+      if (!videoElement.paused && !videoElement.ended) {
+          requestAnimationFrame(slideVideo);
+      } else {
+          teleportVideo(); // Teleport when done
+      }
+  }
+
+  videoElement.addEventListener("ended", playNextVideo);
+  playNextVideo(); // Start with the first video
 });

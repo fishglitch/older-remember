@@ -44,10 +44,10 @@ document.addEventListener("DOMContentLoaded", () => {
     "assets/ppl-solo/mr tak - Copy of 000019730014.jpg",
     "assets/ppl-solo/mr tak supplies - Copy of 000019730007.jpg",
     "assets/ppl-solo/VE_Arnold_Aaliyah_Cola.jpg"
+  
   ];
-
-  const peopleImages = []; // Renamed variable
-  let currentIndexPeople = 0; // Renamed variable
+  const peopleImages = [];
+  let currentIndexPeople = 0;
 
   // Function to shuffle an array
   function shuffle(array) {
@@ -65,11 +65,11 @@ document.addEventListener("DOMContentLoaded", () => {
           const img = new Image();
           img.src = url;
           img.onload = () => {
-            console.log(`People images loaded`); // Log when each image is loaded
+            console.log(`People images loaded`);
             resolve(img);
           };
           img.onerror = () => {
-            console.error(`Failed to load image: ${url}`); // Log if an image fails to load
+            console.error(`Failed to load image: ${url}`);
           };
         });
       })
@@ -78,47 +78,86 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Sets up the canvas and draws the first image
   function setup() {
-    const canvas = document.getElementById("imgPpl"); // Renamed element
+    const canvas = document.getElementById("imgPpl");
     const ctx = canvas.getContext("2d");
-
-    // Draw the first image
+    canvas.style.position = 'relative'; // Ensure canvas can have a position style
     draw(ctx);
   }
 
-  // Draws the current image on the canvas
-  function draw(ctx) {
+  // Draws the current image on the canvas at a random position 
+  function draw(ctx, fadeOut = false) {
+    const overlayContainer = document.getElementById("overlayContainer");
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    const img = peopleImages[currentIndexPeople]; // Renamed array
-    ctx.drawImage(
-      img,
-      (ctx.canvas.width - img.width / 2) / 2,
-      (ctx.canvas.height - img.height / 2) / 2,
-      img.width / 2,
-      img.height / 2
-    );
+    const img = peopleImages[currentIndexPeople];
+
+    // Calculate new size based on aspect ratio
+    const aspectRatio = img.width / img.height;
+    const newWidth = Math.min(ctx.canvas.width, img.width / 2); // Set max width for the image
+    const newHeight = newWidth / aspectRatio;
+
+    // Generate random positions
+    const x = Math.random() * (ctx.canvas.width - newWidth);
+    const y = Math.random() * (ctx.canvas.height - newHeight);
+
+    ctx.save(); // Save the current drawing state
+    if (fadeOut) {
+      ctx.globalAlpha = 0; // Set initial alpha to 0
+      ctx.globalAlpha = 1; // Fade in
+    }
+
+    ctx.drawImage(img, x, y, newWidth, newHeight);
+
+    ctx.restore(); // Restore the original drawing state
   }
 
-  // Moves to the next image
+  // Moves to the next image with fading effect
   function nextImage() {
-    currentIndexPeople++; // Renamed variable
-    if (currentIndexPeople >= peopleImages.length) {
-      currentIndexPeople = 0; // Wrap around to the first image
-    }
-    const canvas = document.getElementById("imgPpl"); // Renamed element
+    const canvas = document.getElementById("imgPpl");
     const ctx = canvas.getContext("2d");
-    draw(ctx);
+    
+    // Draw current image and fade it out after 3-5 images
+    if (currentIndexPeople % (1 + Math.floor(Math.random() * 1)) === 0) { // Fade out every 3 to 5 images
+      fadeOutImage(ctx);
+    } else {
+      currentIndexPeople++;
+      if (currentIndexPeople >= peopleImages.length) {
+        currentIndexPeople = 0;
+      }
+      draw(ctx);
+    }
+  }
+
+  // Fades the image out
+  function fadeOutImage(ctx) {
+    let alpha = 1;
+    
+    const fadeOutInterval = setInterval(() => {
+      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+      draw(ctx, true);
+      ctx.globalAlpha = alpha;
+      alpha -= 0.5; // Decrease alpha for fade effect
+
+      if (alpha <= 0) {
+        clearInterval(fadeOutInterval);
+        currentIndexPeople++;
+        if (currentIndexPeople >= peopleImages.length) {
+          currentIndexPeople = 0; // Wrap around to the first image
+        }
+        draw(ctx); // Draw the next image
+      }
+    }, 300); // Repeat every 100ms
   }
 
   // Preload images and set up the canvas
   preload()
     .then((loadedImages) => {
-      peopleImages.push(...loadedImages); // Renamed array
-      shuffle(peopleImages); // Shuffle images here
-      console.log("People images preloaded and shuffled."); // Log after all images are loaded and shuffled
+      peopleImages.push(...loadedImages);
+      shuffle(peopleImages);
+      console.log("People images preloaded and shuffled.");
       setup();
 
-      // Optionally add an interval to automatically change images
-      setInterval(nextImage, 500); // Change image every 500 milliseconds
+      // Automatically change images
+      setInterval(nextImage, 1500); // Initiate image cycle
     })
     .catch((err) => {
       console.error("Error preloading images:", err);

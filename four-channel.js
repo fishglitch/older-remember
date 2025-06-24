@@ -40,22 +40,30 @@ const s = (p1) => {
 
 let myp5 = new p5(s);
 
-src(o0).scrollY(-0.003).scrollX(0.002).blend(o0, 0.5).layer(src(s0)).out(o0);
+src(o0).scrollY(0.003).scrollX(-0.002).blend(o0, -0.1).layer(src(s0)).out(o0);
 
 // PNP
 s1.initImage("assets/pnp-ai.jpg");
-src(s1).modulateRotate(osc(4, -0.3, 0)).out(o1);
+src(s1).modulateRotate(osc(3, 0.1)).out(o1);
 
 
-// water texture
+// sam cellphone
 // https://upload.wikimedia.org/wikipedia/commons/2/26/Sea_wave_abstract_texture_%28Unsplash%29.jpg
 s2.initImage(
   "assets/cameras-phones/000009150019.jpg"
 );
-src(s2).out(o2);
+src(s2)
+.modulatePixelate(noise(6005,0.001),400)
+.out(o2);
 
 // video
 s3.initVideo("assets/vids/boiler-room-sample.mp4");
-src(s3).modulate(osc(6, -0.3, 0)).out(o3);
+src(s3)
+
+// .repeat(2,2)
+// .modulateRepeat(osc(1), -.1, 1.5, 5, 0.5)
+.scrollY(.1, .3)
+.modulate(osc(10).color(-5, 5, 5).brightness(9), .001) // Flickering
+.out(o3);
 
 render();

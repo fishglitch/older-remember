@@ -98,6 +98,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setup();
 
     // Optionally add an interval to automatically change images
-    setInterval(nextImage, 500); // change image every n milliseconds
+    setInterval(nextImage, 2000); // change image every n milliseconds
   });
 });

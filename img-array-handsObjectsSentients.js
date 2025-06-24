@@ -24,6 +24,40 @@ document.addEventListener("DOMContentLoaded", () => {
     "assets/objects/AP3.jpg",
     "assets/objects/FH030026.jpg",
     "assets/objects/SoMapagmahal_BayanihanMural.jpg",
+    "assets/sentient-beings/000007400021.jpg",
+    "assets/sentient-beings/000007420019.jpg",
+    "assets/sentient-beings/000007440022.jpg",
+    "assets/sentient-beings/000007440024.jpg",
+    "assets/sentient-beings/000007440026.jpg",
+    "assets/sentient-beings/000009150002.jpg",
+    "assets/sentient-beings/000009150003.jpg",
+    "assets/sentient-beings/000009150014.jpg",
+    "assets/sentient-beings/000009150015.jpg",
+    "assets/sentient-beings/000009150017.jpg",
+    "assets/sentient-beings/000009160009.jpg",
+    "assets/sentient-beings/000009160018.jpg",
+    "assets/sentient-beings/000009170017.jpg",
+    "assets/sentient-beings/000009170029.jpg",
+    "assets/sentient-beings/000009180017.jpg",
+    "assets/sentient-beings/000009180018.jpg",
+    "assets/sentient-beings/000009180023.jpg",
+    "assets/sentient-beings/000011550004.jpg",
+    "assets/sentient-beings/000014230005.jpg",
+    "assets/sentient-beings/000014500001.jpg",
+    "assets/sentient-beings/000014520002.jpg",
+    "assets/sentient-beings/000014520036.jpg",
+    "assets/sentient-beings/000019750019.jpg",
+    "assets/sentient-beings/20190418_SoMapagmahalVMDshoot.etc_028_Erina C Alejo.JPG",
+    "assets/sentient-beings/20190418_SoMapagmahalVMDshoot.etc_032_Erina C Alejo.JPG",
+    "assets/sentient-beings/000051240014.jpg",
+    "assets/sentient-beings/alejo000820-R1-042-19A.jpg",
+    "assets/sentient-beings/alejo000820-R1-044-20A.jpg",
+    "assets/sentient-beings/alejo000820-R1-048-22A.jpg",
+    "assets/sentient-beings/AP8.jpg",
+    "assets/sentient-beings/FH030002.jpeg",
+    "assets/sentient-beings/SoMapagmahal_Alley.jpg",
+    "assets/sentient-beings/vines - Copy of 000009150003.jpg"
+    
   ];
 
   const hands = [];
@@ -60,12 +94,21 @@ document.addEventListener("DOMContentLoaded", () => {
   function setup() {
     const canvas = document.getElementById("imgHands");
     const ctx = canvas.getContext("2d");
-
     // Draw the first image
+    draw(ctx);
+    // Start the image cycling with random intervals
+    cycleImages(ctx);
+  }
+
+  // Moves to the next image
+  function nextImage(ctx) {
+    currentIndexHands++;
+    if (currentIndexHands >= hands.length) {
+      currentIndexHands = 0;
+    }
     draw(ctx);
   }
 
-  // Draws the current image on the canvas
   function draw(ctx) {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     const img = hands[currentIndexHands];
@@ -78,27 +121,22 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
-  // Moves to the next image
-  function nextImage() {
-    currentIndexHands++;
-    if (currentIndexHands >= hands.length) {
-      currentIndexHands = 0; // Wrap around to the first image
-    }
-    const canvas = document.getElementById("imgHands");
-    const ctx = canvas.getContext("2d");
-    draw(ctx);
+  // Cycle through images with varying intervals
+  function cycleImages(ctx) {
+    nextImage(ctx); // Call to show the next image
+
+    // Generate a random interval between 300 and 1500 milliseconds
+    const randomInterval = Math.floor(Math.random() * (800 + 1)) + 300; // Random between 300 ms and 1500 ms
+    setTimeout(() => cycleImages(ctx), randomInterval); // Call the next cycle with the random interval
   }
 
   // Preload images and set up the canvas
   preload()
     .then((loadedImages) => {
-      hands.push(...loadedImages);
-      shuffle(hands); // Shuffle images here
+      hands.push(...loadedImages); // Push loaded images into the 'hands' array
+      shuffle(hands); // Shuffle hands images
       console.log("Hand images preloaded and shuffled."); // Log after all images are loaded and shuffled
       setup();
-
-      // Optionally add an interval to automatically change images
-      setInterval(nextImage, 200); // Change image every 500 milliseconds
     })
     .catch((err) => {
       console.error("Error preloading images:", err);

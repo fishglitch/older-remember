@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setup();
   
         // Optionally add an interval to automatically change images
-        setInterval(nextImage, 500); // Change image every 500 milliseconds
+        setInterval(nextImage, 1500); // Change image every 500 milliseconds
       })
       .catch((err) => {
         console.error("Error preloading images:", err);
